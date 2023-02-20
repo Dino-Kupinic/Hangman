@@ -7,10 +7,21 @@ export default function getWordsFromFile(topic) {
 		case "austrian cities":
 			return fetch(`words/${topic}.json`)
 				.then((response) => response.json())
-				.then((json) => {
-					return json;
-				});
+				.then((json) => returnCorrectSection(json));
 		default:
 			throw "invalid topic found";
+	}
+}
+
+function returnCorrectSection(json) {
+	const difficulty = document.querySelector("#difficulties").value;
+
+	switch (difficulty) {
+		case "easy":
+			return json.easy;
+		case "normal":
+			return json.normal;
+		case "hard":
+			return json.hard;
 	}
 }

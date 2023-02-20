@@ -3,14 +3,16 @@
 import jsonLoader from "./fileLoader.js";
 
 window.onload = () => {
-	run().then(() => {});
+	run();
 }
 
-async function run() {
-	try {
-		const json = await jsonLoader("animals");
-		console.log(json);
+function run() {
+	readJSON();
+}
 
+async function readJSON() {
+	try {
+		return await jsonLoader("animals");
 	} catch (error) {
 		console.log(error);
 	}
