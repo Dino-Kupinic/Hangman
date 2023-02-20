@@ -1,0 +1,35 @@
+{
+  "easy": [
+    {
+      "word": "dog"
+    },
+    {
+      "word": "cat"
+    },
+    {
+      "word": "parrot"
+    }
+  ],
+  "normal": [
+    {
+      "word": "rattlesnake"
+    },
+    {
+      "word": "hummingbird"
+    },
+    {
+      "word": "armadillo"
+    }
+  ],
+  "hard": [
+    {
+      "word": "black-crowned central american squirrel monkey"
+    },
+    {
+      "word": "canadian swallowtail tiger butterfly"
+    },
+    {
+      "word": "pleasing fungus beetle"
+    }
+  ]
+}
