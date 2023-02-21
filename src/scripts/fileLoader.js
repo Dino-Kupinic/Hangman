@@ -1,6 +1,6 @@
 "use strict";
 
-export default function getWordsFromFile(topic) {
+function getWordsFromFile(topic) {
 	switch (topic) {
 		case "animals":
 		case "cars":

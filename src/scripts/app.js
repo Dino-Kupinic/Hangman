@@ -1,21 +1,19 @@
 "use strict";
 
-import jsonLoader from "./fileLoader.js";
-
-window.onload = () => {
-	run();
-}
-
-export function run() {
+function run() {
 	readJSON().then(response => {
 		console.log(chooseRandomWord(response));
 	});
 }
 
+window.onload = () => {
+	run();
+}
+
 async function readJSON() {
 	const topic = document.querySelector("#topics").value;
 	try {
-		return await jsonLoader(topic);
+		return await getWordsFromFile(topic);
 	} catch (error) {
 		console.log(error);
 	}
