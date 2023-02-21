@@ -7,7 +7,8 @@ export default function getWordsFromFile(topic) {
 		case "austrian cities":
 			return fetch(`words/${topic}.json`)
 				.then((response) => response.json())
-				.then((json) => returnCorrectSection(json));
+				.then((json) => returnCorrectSection(json))
+				.catch(error => console.log(error));
 		default:
 			throw "invalid topic found";
 	}
