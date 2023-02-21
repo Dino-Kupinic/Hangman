@@ -6,15 +6,16 @@ window.onload = () => {
 	run();
 }
 
-function run() {
+export function run() {
 	readJSON().then(response => {
-		chooseRandomWord(response);
+		console.log(chooseRandomWord(response));
 	});
 }
 
 async function readJSON() {
+	const topic = document.querySelector("#topics").value;
 	try {
-		return await jsonLoader("animals");
+		return await jsonLoader(topic);
 	} catch (error) {
 		console.log(error);
 	}
