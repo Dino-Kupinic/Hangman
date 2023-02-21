@@ -7,7 +7,9 @@ window.onload = () => {
 }
 
 function run() {
-	readJSON();
+	readJSON().then(response => {
+		chooseRandomWord(response);
+	});
 }
 
 async function readJSON() {
@@ -16,4 +18,21 @@ async function readJSON() {
 	} catch (error) {
 		console.log(error);
 	}
+}
+
+function chooseRandomWord(response) {
+	const randomNumber = getRandomNumber(response.length);
+
+	switch (randomNumber) {
+		case 0:
+			return response[0];
+		case 1:
+			return response[1];
+		case 2:
+			return response[2];
+	}
+}
+
+function getRandomNumber(length) {
+	return Math.floor(Math.random() * (length - 1));
 }
