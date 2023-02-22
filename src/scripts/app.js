@@ -1,13 +1,29 @@
 "use strict";
 
-function run() {
-	readJSON().then(response => {
-		console.log(chooseRandomWord(response));
-	});
-}
-
 window.onload = () => {
 	run();
+}
+
+function run() {
+	readJSON().then(response => {
+		const { word } = chooseRandomWord(response);
+		const wordArray = [...word];
+		const displayArray = [];
+
+		console.log(word)
+		console.log(wordArray)
+
+		for (let i = 0; i < word.length; i++) {
+			if (wordArray[i] !== " ") {
+				displayArray.push("_");
+			} else {
+				displayArray.push(" ");
+			}
+		}
+		console.log(displayArray)
+		const htmlWord = document.querySelector("#word");
+		htmlWord.textContent = displayArray;
+	});
 }
 
 async function readJSON() {

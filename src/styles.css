@@ -10,6 +10,13 @@ h1 {
     text-align: center;
 }
 
+h2 {
+    font-size: 40px;
+    font-family: Arial, serif;
+    color: #f1eaea;
+    text-align: center;
+}
+
 label {
     font-size: 30px;
     font-family: Arial, serif;
@@ -29,7 +36,7 @@ select {
 
 #keyboard {
     position: absolute;
-    transform: translate(-50%, 130%);
+    transform: translate(-50%, 70%);
     left: 50%;
     right: 50%;
     display: flex;
