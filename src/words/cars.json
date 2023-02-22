@@ -1,0 +1,62 @@
+{
+  "easy": [
+    {
+      "word": "bmw"
+    },
+    {
+      "word": "mercedes"
+    },
+    {
+      "word": "volkswagen"
+    },
+    {
+      "word": "ford"
+    },
+    {
+      "word": "audi"
+    },
+    {
+      "word": "toyota"
+    }
+  ],
+  "normal": [
+    {
+      "word": "jeep"
+    },
+    {
+      "word": "porsche"
+    },
+    {
+      "word": "subaru"
+    },
+    {
+      "word": "hyundai"
+    },
+    {
+      "word": "nissan"
+    },
+    {
+      "word": "bugatti"
+    }
+  ],
+  "hard": [
+    {
+      "word": "mitsubishi"
+    },
+    {
+      "word": "peugeot"
+    },
+    {
+      "word": "ford mustang"
+    },
+    {
+      "word": "bentley"
+    },
+    {
+      "word": "chevrolet corvette"
+    },
+    {
+      "word": "lamborghini"
+    }
+  ]
+}

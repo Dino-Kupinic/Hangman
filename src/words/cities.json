@@ -1,0 +1,62 @@
+{
+  "easy": [
+    {
+      "word": "steyr"
+    },
+    {
+      "word": "new york"
+    },
+    {
+      "word": "vienna"
+    },
+    {
+      "word": "linz"
+    },
+    {
+      "word": "london"
+    },
+    {
+      "word": "tokyo"
+    }
+  ],
+  "normal": [
+    {
+      "word": "manchester"
+    },
+    {
+      "word": "dublin"
+    },
+    {
+      "word": "klagenfurt am wörthersee"
+    },
+    {
+      "word": "glasgow"
+    },
+    {
+      "word": "atlanta"
+    },
+    {
+      "word": "los angeles"
+    }
+  ],
+  "hard": [
+    {
+      "word": "gschlachtenbretzingen"
+    },
+    {
+      "word": "fuerstenfeldbruck"
+    },
+    {
+      "word": "gainesville"
+    },
+    {
+      "word": "parkersburg"
+    },
+    {
+      "word": "philadelphia"
+    },
+    {
+      "word": "brighton"
+    }
+  ]
+}

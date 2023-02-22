@@ -4,7 +4,7 @@ function getWordsFromFile(topic) {
 	switch (topic) {
 		case "animals":
 		case "cars":
-		case "austrian cities":
+		case "cities":
 			return fetch(`words/${topic}.json`)
 				.then((response) => response.json())
 				.then((json) => returnCorrectSection(json))

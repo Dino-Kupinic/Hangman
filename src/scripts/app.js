@@ -29,6 +29,12 @@ function chooseRandomWord(response) {
 			return response[1];
 		case 2:
 			return response[2];
+		case 3:
+			return response[3];
+		case 4:
+			return response[4];
+		case 5:
+			return response[5];
 	}
 }
 

@@ -8,6 +8,15 @@
     },
     {
       "word": "parrot"
+    },
+    {
+      "word": "mouse"
+    },
+    {
+      "word": "lion"
+    },
+    {
+      "word": "monkey"
     }
   ],
   "normal": [
@@ -19,6 +28,15 @@
     },
     {
       "word": "armadillo"
+    },
+    {
+      "word": "black widow"
+    },
+    {
+      "word": "caterpillar"
+    },
+    {
+      "word": "lynx"
     }
   ],
   "hard": [
@@ -30,6 +48,15 @@
     },
     {
       "word": "pleasing fungus beetle"
+    },
+    {
+      "word": "the black rhinoceros is found in africa"
+    },
+    {
+      "word": "california tarantula"
+    },
+    {
+      "word": "capybaras live in south america"
     }
   ]
 }
