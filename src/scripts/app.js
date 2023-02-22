@@ -18,23 +18,13 @@ function addEventListenersToKeys() {
 			const letter = key.querySelector(".letter");
 			const value = letter.textContent.toLowerCase();
 
-			console.log(value);
-
 			if (wordArray.includes(value)) {
 				const index = wordArray.indexOf(value);
-				wordArray[index] = value;
-
-				for (let i = 0; i < wordArray.length; i++) {
-					if (wordArray[i] === value) {
-						displayArray.push(value);
-					} else if (wordArray[i] !== " ") {
-						displayArray.push("_");
-					} else {
-						displayArray.push(" ");
-					}
-				}
+				displayArray[index] = value;
 				updateHTMLword(displayArray)
-				displayArray.length = 0;
+				if (wordArray.toString() == displayArray.toString()) {
+					// win
+				}
 			} else {
 				console.log("hangman")
 			}
