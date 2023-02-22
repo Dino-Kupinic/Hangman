@@ -6,24 +6,65 @@ window.onload = () => {
 
 function run() {
 	readJSON().then(response => {
-		const { word } = chooseRandomWord(response);
-		const wordArray = [...word];
-		const displayArray = [];
-
-		console.log(word)
-		console.log(wordArray)
-
-		for (let i = 0; i < word.length; i++) {
-			if (wordArray[i] !== " ") {
-				displayArray.push("_");
-			} else {
-				displayArray.push(" ");
-			}
-		}
-		console.log(displayArray)
-		const htmlWord = document.querySelector("#word");
-		htmlWord.textContent = displayArray;
+		displayWord(response);
 	});
+	addEventListenersToKeys();
+}
+
+function addEventListenersToKeys() {
+	const keys = document.querySelectorAll(".key");
+	keys.forEach(key => {
+		key.addEventListener("click", () => {
+			const letter = key.querySelector(".letter");
+			const value = letter.textContent.toLowerCase();
+
+			console.log(value);
+
+			if (wordArray.includes(value)) {
+				const index = wordArray.indexOf(value);
+				wordArray[index] = value;
+
+				for (let i = 0; i < wordArray.length; i++) {
+					if (wordArray[i] === value) {
+						displayArray.push(value);
+					} else if (wordArray[i] !== " ") {
+						displayArray.push("_");
+					} else {
+						displayArray.push(" ");
+					}
+				}
+				updateHTMLword(displayArray)
+				displayArray.length = 0;
+			} else {
+				console.log("hangman")
+			}
+		})
+	})
+}
+
+const displayArray = [];
+let wordArray;
+
+
+function updateHTMLword(displayArray) {
+	const htmlWord = document.querySelector("#word");
+	htmlWord.textContent = "";
+	htmlWord.textContent = displayArray.join(" ");
+}
+
+function displayWord(response) {
+	const {word} = chooseRandomWord(response);
+	wordArray = [...word];
+
+	for (let i = 0; i < word.length; i++) {
+		if (wordArray[i] !== " ") {
+			displayArray.push("_");
+		} else {
+			displayArray.push(" ");
+		}
+	}
+
+	updateHTMLword(displayArray);
 }
 
 async function readJSON() {
