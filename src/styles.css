@@ -26,3 +26,45 @@ select {
     width: 100px;
     padding-left: 20px;
 }
+
+#keyboard {
+    display: flex;
+    width: 700px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #f1eaea;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px;
+    background-color: #151414;
+}
+
+.row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.key {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 28px;
+    font-family: Arial, serif;
+    font-weight: bold;
+    width: 50px;
+    height: 50px;
+    border: 1px solid #151414;
+    margin: 5px;
+    background-color: #f7f7f7;
+}
+
+.letter {
+    text-align: center;
+}
+
+.key:hover {
+    background-color: #c9c8c8;
+}
