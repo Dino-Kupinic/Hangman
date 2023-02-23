@@ -3,6 +3,17 @@ body {
     user-select: none;
 }
 
+#hangman {
+    padding-top: 40px;
+    position: relative;
+}
+
+pre {
+    position: absolute;
+    color: #f1eaea;
+    font-size: 30px;
+}
+
 h1 {
     font-size: 70px;
     font-family: Arial, serif;
@@ -33,6 +44,7 @@ select {
     width: 100px;
     padding-left: 20px;
 }
+
 
 #keyboard {
     position: absolute;
