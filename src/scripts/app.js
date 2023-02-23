@@ -5,6 +5,7 @@ window.onload = () => {
 }
 
 function run() {
+	displayArray.length = 0;
 	readJSON().then(response => {
 		displayWord(response);
 	});
@@ -18,12 +19,21 @@ function addEventListenersToKeys() {
 			const letter = key.querySelector(".letter");
 			const value = letter.textContent.toLowerCase();
 
+			console.log(value)
+			console.log(wordArray)
+			console.log(displayArray)
+
 			if (wordArray.includes(value)) {
-				const index = wordArray.indexOf(value);
-				displayArray[index] = value;
-				updateHTMLword(displayArray)
+				for (let i = 0; i < wordArray.length; i++) {
+					if (wordArray[i] === value) {
+						displayArray[i] = value;
+					}
+				}
+
+				updateWordDisplay(displayArray)
+
 				if (wordArray.toString() == displayArray.toString()) {
-					// win
+					console.log("win")
 				}
 			} else {
 				console.log("hangman")
@@ -36,9 +46,14 @@ const displayArray = [];
 let wordArray;
 
 
-function updateHTMLword(displayArray) {
+function clearWord() {
 	const htmlWord = document.querySelector("#word");
 	htmlWord.textContent = "";
+	return htmlWord;
+}
+
+function updateWordDisplay(displayArray) {
+	const htmlWord = clearWord();
 	htmlWord.textContent = displayArray.join(" ");
 }
 
@@ -54,7 +69,7 @@ function displayWord(response) {
 		}
 	}
 
-	updateHTMLword(displayArray);
+	updateWordDisplay(displayArray);
 }
 
 async function readJSON() {
