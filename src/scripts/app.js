@@ -70,12 +70,15 @@ function getRandomNumber(length) {
 
 function addEventListenersToKeys() {
 	let incorrectGuesses = -1;
+	const revealedLetters = [];
 
 	const keys = document.querySelectorAll(".key");
 	keys.forEach(key => {
 		key.addEventListener("click", () => {
 			const winLabel = document.querySelector("#winLabel");
 			if (winLabel.textContent === "You lost!") {
+				incorrectGuesses = -1;
+				revealedLetters.length = 0;
 				return;
 			}
 
@@ -88,6 +91,10 @@ function addEventListenersToKeys() {
 			console.log(incorrectGuesses)
 
 			if (wordArray.includes(value)) {
+				if (revealedLetters.includes(value)) {
+					return;
+				}
+				revealedLetters.push(value);
 				for (let i = 0; i < wordArray.length; i++) {
 					if (wordArray[i] === value) {
 						displayArray[i] = value;
@@ -144,5 +151,6 @@ function setGameOutcome(outcome) {
 		winLabel.textContent = "";
 		return;
 	}
+
 	winLabel.textContent = `You ${outcome}!`;
 }
