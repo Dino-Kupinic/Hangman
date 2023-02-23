@@ -53,8 +53,12 @@ function clearWord() {
 }
 
 function updateWordDisplay(displayArray) {
+	const NO_BREAK_SPACE = "\u00A0";
+	const ALL_SPACE_GLOBAL = / /g;
+
 	const htmlWord = clearWord();
-	htmlWord.textContent = displayArray.join(" ");
+	const joinedString = displayArray.join(" ");
+	htmlWord.textContent = joinedString.replace(ALL_SPACE_GLOBAL, NO_BREAK_SPACE);
 }
 
 function displayWord(response) {
