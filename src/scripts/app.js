@@ -12,6 +12,11 @@ function run() {
 	addEventListenersToKeys();
 }
 
+function restart() {
+	resetHangman();
+	setGameOutcome("reset");
+	run();
+}
 
 const displayArray = [];
 let wordArray;
@@ -64,16 +69,23 @@ function getRandomNumber(length) {
 }
 
 function addEventListenersToKeys() {
-	let incorrectGuesses = 0;
+	let incorrectGuesses = -1;
+
 	const keys = document.querySelectorAll(".key");
 	keys.forEach(key => {
 		key.addEventListener("click", () => {
+			const winLabel = document.querySelector("#winLabel");
+			if (winLabel.textContent === "You lost!") {
+				return;
+			}
+
 			const letter = key.querySelector(".letter");
 			const value = letter.textContent.toLowerCase();
 
 			console.log(value)
 			console.log(wordArray)
 			console.log(displayArray)
+			console.log(incorrectGuesses)
 
 			if (wordArray.includes(value)) {
 				for (let i = 0; i < wordArray.length; i++) {
@@ -85,7 +97,7 @@ function addEventListenersToKeys() {
 				updateWordDisplay(displayArray)
 
 				if (wordArray.toString() === displayArray.toString()) {
-					console.log("win")
+					setGameOutcome("win");
 				}
 			} else {
 				incorrectGuesses++;
@@ -95,7 +107,14 @@ function addEventListenersToKeys() {
 	});
 }
 
+
 function updateHangman(incorrectGuesses) {
+	const winLabel = document.querySelector("#winLabel");
+	if (winLabel.textContent === "You win!") {
+		return;
+	}
+
+	const TOTAL_HANGMAN_PARTS = 5;
 	const hangmanParts = [
 		'  _________\n  |        |\n  |\n  |\n  |\n  |\n _|\n|_|______',
 		'  _________\n  |        |\n  |        O\n  |\n  |\n  |\n _|\n|_|______',
@@ -106,9 +125,24 @@ function updateHangman(incorrectGuesses) {
 	];
 
 	const hangman = document.querySelector("pre");
-	if (incorrectGuesses <= 5) {
+	if (incorrectGuesses <= TOTAL_HANGMAN_PARTS && incorrectGuesses >= 0) {
 		hangman.innerText = hangmanParts[incorrectGuesses];
-	} else {
-		// lose
+		if (incorrectGuesses === TOTAL_HANGMAN_PARTS) {
+			setGameOutcome("lost");
+		}
 	}
+}
+
+function resetHangman() {
+	const hangman = document.querySelector("pre");
+	hangman.innerText = "";
+}
+
+function setGameOutcome(outcome) {
+	const winLabel = document.querySelector("#winLabel");
+	if (outcome === "reset") {
+		winLabel.textContent = "";
+		return;
+	}
+	winLabel.textContent = `You ${outcome}!`;
 }
