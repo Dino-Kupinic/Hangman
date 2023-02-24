@@ -12,10 +12,14 @@ function run() {
 	addEventListenersToKeys();
 }
 
+let pressedRestart = false;
+
 function restart() {
+	pressedRestart = true;
 	resetHangman();
 	setGameOutcome("reset");
 	run();
+	pressedRestart = false;
 }
 
 const displayArray = [];
@@ -76,7 +80,7 @@ function addEventListenersToKeys() {
 	keys.forEach(key => {
 		key.addEventListener("click", () => {
 			const winLabel = document.querySelector("#winLabel");
-			if (winLabel.textContent === "You lost!") {
+			if (winLabel.textContent === "You lost!" || pressedRestart) {
 				incorrectGuesses = -1;
 				revealedLetters.length = 0;
 				return;
@@ -107,13 +111,16 @@ function addEventListenersToKeys() {
 					setGameOutcome("win");
 				}
 			} else {
-				incorrectGuesses++;
+				if (incorrectGuesses !== TOTAL_HANGMAN_PARTS) {
+					incorrectGuesses++;
+				}
 			}
 			updateHangman(incorrectGuesses);
 		});
 	});
 }
 
+const TOTAL_HANGMAN_PARTS = 5;
 
 function updateHangman(incorrectGuesses) {
 	const winLabel = document.querySelector("#winLabel");
@@ -121,7 +128,6 @@ function updateHangman(incorrectGuesses) {
 		return;
 	}
 
-	const TOTAL_HANGMAN_PARTS = 5;
 	const hangmanParts = [
 		'  _________\n  |        |\n  |\n  |\n  |\n  |\n _|\n|_|______',
 		'  _________\n  |        |\n  |        O\n  |\n  |\n  |\n _|\n|_|______',
