@@ -5,21 +5,21 @@ window.onload = () => {
 }
 
 function run() {
-	displayArray.length = 0;
 	readJSON().then(response => {
 		displayWord(response);
 	});
 	addEventListenersToKeys();
 }
 
-let pressedRestart = false;
 
 function restart() {
-	pressedRestart = true;
+	removeEventListenersFromKeys();
+	incorrectGuesses = -1;
+	displayArray.length = 0;
+	wordArray.length = 0;
 	resetHangman();
 	setGameOutcome("reset");
 	run();
-	pressedRestart = false;
 }
 
 const displayArray = [];
@@ -72,62 +72,60 @@ function getRandomNumber(length) {
 	return Math.floor(Math.random() * (length - 1));
 }
 
+let incorrectGuesses = -1;
+
 function addEventListenersToKeys() {
-	let incorrectGuesses = -1;
-	const revealedLetters = [];
-
 	const keys = document.querySelectorAll(".key");
+
 	keys.forEach(key => {
-		key.addEventListener("click", () => {
-			const winLabel = document.querySelector("#winLabel");
-			if (winLabel.textContent === "You lost!" || pressedRestart) {
-				incorrectGuesses = -1;
-				revealedLetters.length = 0;
-				return;
-			}
-
-			const letter = key.querySelector(".letter");
-			const value = letter.textContent.toLowerCase();
-
-			console.log(value)
-			console.log(wordArray)
-			console.log(displayArray)
-			console.log(incorrectGuesses)
-
-			if (wordArray.includes(value)) {
-				if (revealedLetters.includes(value)) {
-					return;
-				}
-				revealedLetters.push(value);
-				for (let i = 0; i < wordArray.length; i++) {
-					if (wordArray[i] === value) {
-						displayArray[i] = value;
-					}
-				}
-
-				updateWordDisplay(displayArray)
-
-				if (wordArray.toString() === displayArray.toString()) {
-					setGameOutcome("win");
-				}
-			} else {
-				if (incorrectGuesses !== TOTAL_HANGMAN_PARTS) {
-					incorrectGuesses++;
-				}
-			}
-			updateHangman(incorrectGuesses);
-		});
+		key.addEventListener("click", handleClick);
 	});
 }
+
+function handleClick(event) {
+	const key = event.currentTarget;
+	const letter = key.querySelector(".letter");
+	const value = letter.textContent.toLowerCase();
+
+	console.log("Word Array = " + wordArray)
+	console.log("Display Array = " + displayArray)
+	console.log("Incorrect Guesses = " + incorrectGuesses)
+
+	if (wordArray.includes(value)) {
+
+		for (let i = 0; i < wordArray.length; i++) {
+			if (wordArray[i] === value) {
+				displayArray[i] = value;
+			}
+		}
+
+		updateWordDisplay(displayArray)
+
+		if (wordArray.toString() === displayArray.toString()) {
+			setGameOutcome("win");
+		}
+
+	} else {
+
+		if (incorrectGuesses !== TOTAL_HANGMAN_PARTS) {
+			incorrectGuesses++;
+		}
+
+	}
+	updateHangman(incorrectGuesses);
+}
+
+function removeEventListenersFromKeys() {
+	const keys = document.querySelectorAll(".key");
+	keys.forEach(key => {
+		key.removeEventListener("click", handleClick);
+	});
+}
+
 
 const TOTAL_HANGMAN_PARTS = 5;
 
 function updateHangman(incorrectGuesses) {
-	const winLabel = document.querySelector("#winLabel");
-	if (winLabel.textContent === "You win!") {
-		return;
-	}
-
 	const hangmanParts = [
 		'  _________\n  |        |\n  |\n  |\n  |\n  |\n _|\n|_|______',
 		'  _________\n  |        |\n  |        O\n  |\n  |\n  |\n _|\n|_|______',
