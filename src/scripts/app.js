@@ -11,14 +11,19 @@ function run() {
 	addEventListenersToKeys();
 }
 
+
 function restart() {
-	incorrectGuesses = -1;
-	displayArray.length = 0;
-	wordArray.length = 0;
+	resetArraysAndGuesses();
 	removeEventListenersFromKeys();
 	resetHangman();
 	setGameOutcome("reset");
 	run();
+}
+
+function resetArraysAndGuesses() {
+	incorrectGuesses = -1;
+	displayArray.length = 0;
+	wordArray.length = 0;
 }
 
 const displayArray = [];
@@ -55,7 +60,7 @@ function displayWord(response) {
 async function readJSON() {
 	const topic = document.querySelector("#topics").value;
 	try {
-		return await getWordsFromFile(topic);
+		return await requestJSON(topic);
 	} catch (error) {
 		console.log(error);
 	}

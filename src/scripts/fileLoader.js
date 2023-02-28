@@ -1,14 +1,30 @@
 "use strict";
 
-function getWordsFromFile(topic) {
+let animals;
+let cars;
+let cities;
+
+(function initialLoadJSONs() {
+	animals = getJSON("animals");
+	cars = getJSON("cars");
+	cities = getJSON("cities");
+})();
+
+function getJSON(topic) {
+	return fetch(`words/${topic}.json`)
+		.then((response) => response.json())
+		.then((json) => returnCorrectSection(json))
+		.catch(error => console.log(error));
+}
+
+function requestJSON(topic) {
 	switch (topic) {
 		case "animals":
+			return animals;
 		case "cars":
+			return cars;
 		case "cities":
-			return fetch(`words/${topic}.json`)
-				.then((response) => response.json())
-				.then((json) => returnCorrectSection(json))
-				.catch(error => console.log(error));
+			return cities;
 		default:
 			throw "invalid topic found";
 	}
