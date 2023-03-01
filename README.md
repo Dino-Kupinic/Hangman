@@ -17,3 +17,6 @@ I also had a problem where I would always perform a fetch operation whenever I s
 
 ## Preview Images:
 
+![image](preview_images/image1.jpg)
+![image](preview_images/image2.jpg)
+
